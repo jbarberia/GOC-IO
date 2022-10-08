@@ -85,5 +85,3 @@ def parse_rop(filename:str) -> dict:
         generator_cost[g] = piece_wise_linear_cost_table[cost_curve]
 
     return generator_cost
-
-

@@ -1,18 +1,5 @@
-# Contingency Description Data File
 import re
 from typing import List
-
-# The keywords valid for this data format are:
-# CONTINENCY
-# END
-# OPEN
-# BRANCH
-# FROM
-# BUS
-# TO
-# CIRCUIT
-# REMOVE
-# UNIT
 
 def parse_con(filename: str) -> List[dict]:
     """Read a file ands return an array with the information of the contingency.
