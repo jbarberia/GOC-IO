@@ -1,0 +1,14 @@
+[project]
+name = "GOC_IO"
+version = "0.0.1"
+authors = [
+    {name="Juan Luis Barberia", email="jbarberia@frba.utn.edu.ar"}
+]
+description = "Functions to read and write GOC 1 files"
+readme = "README.MD"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
