@@ -1,11 +1,11 @@
-# TODO *.raw
 # python -m pip install . && python -m pytest ./tests/runtests.py
 import pytest
+import GOC_IO
 from GOC_IO import parse_con, parse_inl, parse_rop, parse_raw
 
 def test_parser_con():
     contingencies = parse_con("./tests/scenario_1/case.con")[-1]
-    assert contingencies == {'event': 'Branch Out-of Service', 'name': 'T_000497JASPER32-000496JASPER31C1', 'id': (497, 496, ' 1')}
+    assert contingencies == {'event': 'Branch Out-of-Service', 'name': 'T_000497JASPER32-000496JASPER31C1', 'id': (497, 496, ' 1')}
 
 def test_parser_inl():
     participation_factor = parse_inl("./tests/scenario_1/case.inl")[496, ' 2']
@@ -19,3 +19,20 @@ def test_parser_raw():
     data = parse_raw("./tests/scenario_1/case.raw")
     assert data["buses"][1]["vm"] == 1.0400857
     assert data["loads"][1]["pl"] == 21.885521 / 100
+
+def test_main():
+    network = GOC_IO.parse_data("./tests/scenario_1")
+    assert network[1]["generators"][272, " 1"]["contingency"] == True
+
+def test_references():
+    network = GOC_IO.parse_data("./tests/scenario_1")
+    references = GOC_IO.build_references(network)
+    assert len(references["bus_generators"][277]) == 4
+
+def test_write_solution_1(): 
+    network = GOC_IO.parse_data("./tests/scenario_1")
+    solution1 = GOC_IO.get_solution_1(network)
+    solution2 = GOC_IO.get_solution_2(network)
+
+    assert len(solution1.splitlines()) == 658
+    assert len(solution2.splitlines()) == 480736

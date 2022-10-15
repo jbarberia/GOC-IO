@@ -53,7 +53,7 @@ def parse_con(filename: str) -> List[dict]:
             ckt = re.search(r"(?<=CIRCUIT).[A-Z|0-9]*", contingency).group().strip().rjust(2, ' ')
 
             contingencies.append({
-                "event": "Branch Out-of Service",
+                "event": "Branch Out-of-Service",
                 "name": name,
                 "id": (bus_from, bus_to, ckt)
             })

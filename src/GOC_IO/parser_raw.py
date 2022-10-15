@@ -164,7 +164,7 @@ def parse_raw(filename: str) -> dict:
     """
     pass
     goc_case = {}
-    case33 = read_case("./tests/scenario_1/case.raw")
+    case33 = read_case(filename)
 
     # Case identification data (C.2)
     goc_case["s_base"] = float(case33["HEADER"]["SBASE"])
@@ -308,6 +308,7 @@ def parse_raw(filename: str) -> dict:
 
         goc_case["switched_shunts"][i] = {
             "i": i,
+            "bs0": bs,
             "bs": bs,
             "bshi": bshi,
             "bslo": bslo
