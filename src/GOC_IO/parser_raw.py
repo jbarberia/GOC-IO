@@ -176,7 +176,7 @@ def parse_raw(filename: str) -> dict:
             "i": int(raw_bus["I"]),
             "area": int(raw_bus["AREA"]),
             "vm": float(raw_bus["VM"]),
-            "va": float(raw_bus["VA"]),
+            "va": float(raw_bus["VA"]) * math.pi / 180,
             "nvhi": float(raw_bus["NVHI"]),
             "nvlo": float(raw_bus["NVLO"]),
             "evhi": float(raw_bus["EVHI"]),
@@ -303,8 +303,8 @@ def parse_raw(filename: str) -> dict:
         i = int(raw_shunt["I"])
         bs = float(raw_shunt["BINIT"]) / goc_case["s_base"]
         b_values = [int(raw_shunt[f"N{x}"]) * float(raw_shunt[f"B{x}"]) for x in range(1, 9)]
-        bshi = sum(max(0, b) for b in b_values)
-        bslo = sum(min(0, b) for b in b_values)
+        bshi = sum(max(0, b) for b in b_values) / goc_case["s_base"]
+        bslo = sum(min(0, b) for b in b_values) / goc_case["s_base"]
 
         goc_case["switched_shunts"][i] = {
             "i": i,

@@ -64,10 +64,12 @@ def parse_data(directory: str) -> dict:
     scenarios = {}
     scenarios[0] = network
     scenarios[0]["contingency"] = False
+    scenarios[0]["network_id"] = 0
 
     for i, contingency in enumerate(contingencies, 1):
         scenarios[i] = deepcopy(network)
         scenarios[i]["contingency"] = contingency
+        scenarios[i]["network_id"] = i
         scenarios[i]["delta_k"] = 0
 
         if contingency["event"] == "Generator Out-of-Service":
