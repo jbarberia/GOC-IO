@@ -13,7 +13,7 @@ def test_parser_inl():
 
 def test_parser_rop():
     cost = parse_rop("./tests/scenario_1/case.rop")[494, ' 1']
-    assert cost == {'cost_table': 219, 'label': 'Linear 219', 'n_points': 6, 'x': [-1.01, 59.12, 79.34, 99.56, 119.78, 141.01], 'y': [-15.7863, 924.0456, 1252.014, 1591.9122, 1943.538, 2325.2534]}
+    assert cost == {'cost_table': 219, 'label': 'Linear 219', 'n_points': 6, 'x': [-1.01, 59.12, 79.34, 99.56, 119.78, 141.01], 'y': [-15.7863, 924.0456, 1252.014, 1591.9122, 1943.538, 2325.2534], 'coefficients': [0.011122953624314263, 14.906318926489629, 0.11711791544219821]}
 
 def test_parser_raw():
     data = parse_raw("./tests/scenario_1/case.raw")

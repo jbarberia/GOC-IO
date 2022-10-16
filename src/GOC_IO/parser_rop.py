@@ -1,3 +1,4 @@
+import numpy as np
 import re
 
 def parse_rop(filename:str) -> dict:
@@ -74,6 +75,7 @@ def parse_rop(filename:str) -> dict:
                 "n_points": n_points,
                 "x": x,
                 "y": y,
+                "coefficients": np.polyfit(x, y, 2).tolist(),
             }
         current_line += 1
 
