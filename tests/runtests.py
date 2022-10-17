@@ -22,7 +22,7 @@ def test_parser_raw():
 
 def test_main():
     network = GOC_IO.parse_data("./tests/scenario_1")
-    assert network[1]["generators"][272, " 1"]["contingency"] == True
+    assert network["contingencies"][0]["id"] == (272, " 1")
 
 def test_references():
     network = GOC_IO.parse_data("./tests/scenario_1")
@@ -31,8 +31,5 @@ def test_references():
 
 def test_write_solution_1(): 
     network = GOC_IO.parse_data("./tests/scenario_1")
-    solution1 = GOC_IO.get_solution_1(network)
-    solution2 = GOC_IO.get_solution_2(network)
-
+    solution1 = GOC_IO.get_solution(network)
     assert len(solution1.splitlines()) == 658
-    assert len(solution2.splitlines()) == 480736
