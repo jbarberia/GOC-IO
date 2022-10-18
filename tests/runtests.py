@@ -33,3 +33,7 @@ def test_write_solution_1():
     network = GOC_IO.parse_data("./tests/scenario_1")
     solution1 = GOC_IO.get_solution(network)
     assert len(solution1.splitlines()) == 658
+
+def test_to_matpower():
+    network = GOC_IO.parse_data("./tests/scenario_1")
+    GOC_IO.to_matpower(network, "tmp.m")

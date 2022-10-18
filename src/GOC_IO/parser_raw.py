@@ -180,7 +180,9 @@ def parse_raw(filename: str) -> dict:
             "nvhi": float(raw_bus["NVHI"]),
             "nvlo": float(raw_bus["NVLO"]),
             "evhi": float(raw_bus["EVHI"]),
-            "evlo": float(raw_bus["EVLO"])
+            "evlo": float(raw_bus["EVLO"]),
+            "base_kv": float(raw_bus["BASKV"]),
+            "type": float(raw_bus["IDE"]),
         }
         goc_case["buses"][int(raw_bus["I"])] = goc_bus
 
@@ -221,6 +223,9 @@ def parse_raw(filename: str) -> dict:
         qg = float(raw_generator["QG"]) / goc_case["s_base"]
         qghi = float(raw_generator["QT"]) / goc_case["s_base"]
         qglo = float(raw_generator["QB"]) / goc_case["s_base"]
+        m_base = float(raw_generator["MBASE"])
+        vg = float(raw_generator["VS"])
+
 
         goc_case["generators"][g] = {
             "g": g,
@@ -230,7 +235,9 @@ def parse_raw(filename: str) -> dict:
             "qghi": qghi,
             "qglo": qglo,
             "pghi": pghi,
-            "pglo": pglo
+            "pglo": pglo,
+            "m_base": m_base,
+            "vg": vg,
         }
 
     # Line data from raw (C.7)
